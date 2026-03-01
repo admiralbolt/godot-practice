@@ -200,6 +200,9 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-1.7855316e-05, -26.407497)
 
 [node name="Player" type="CharacterBody2D" unique_id=1655857196]
+collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.17453292
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1501739287]
@@ -222,3 +225,5 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = Vector2(0.00093638897, 0.9928826)
 parameters/walk/blend_position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1213297563]
