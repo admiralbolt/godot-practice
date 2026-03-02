@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cpmhm3w2om2wo"]
+
+[ext_resource type="Script" uid="uid://cd1l6g42rwhng" path="res://props/plants/plant.gd" id="1_c407k"]
+[ext_resource type="Texture2D" uid="uid://x0vyar84khm" path="res://assets/player_updates/sprites/Props.png" id="1_seybw"]
+[ext_resource type="PackedScene" uid="uid://cuh4xafionjdp" path="res://general/hitboxes/HitBox.tscn" id="2_2u3nk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2u3nk"]
+radius = 16.0
+
+[node name="Plant" type="Node2D" unique_id=1117099936]
+script = ExtResource("1_c407k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=382818926]
+texture = ExtResource("1_seybw")
+hframes = 16
+vframes = 3
+
+[node name="HitBox" parent="." unique_id=1473301795 instance=ExtResource("2_2u3nk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=588794419]
+shape = SubResource("CircleShape2D_2u3nk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2123549024]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1546196440]
+shape = SubResource("CircleShape2D_2u3nk")

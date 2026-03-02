@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vd2ifirvhnkw" path="res://assets/AttackSprite01.png" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://cj2hq7tigrtto" path="res://assets/SwordSwoosh.wav" id="4_hqtel"]
 [ext_resource type="Texture2D" uid="uid://doiv0vmdmg8ib" path="res://assets/Shadow.png" id="4_sweqy"]
+[ext_resource type="PackedScene" uid="uid://dg7q1f5oayegc" path="res://general/hurtboxes/HurtBox.tscn" id="6_2hs0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wt17y"]
 radius = 13.038404
@@ -536,33 +537,6 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_sweqy")
 blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n7ghd"]
-animation = &"attack_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvl01"]
-animation = &"attack_side"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ivps1"]
-animation = &"attack_side"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_urp6f"]
-animation = &"attack_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bwjto"]
-animation = &"attack_effect_down"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bwjto"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_n7ghd")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_nvl01")
-blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_ivps1")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_urp6f")
-blend_point_3/pos = Vector2(0, 1)
-blend_point_4/node = SubResource("AnimationNodeAnimation_bwjto")
-blend_point_4/pos = Vector2(0, -1)
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hs0m"]
 animation = &"walk_side"
 
@@ -611,15 +585,16 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nvl01"]
 states/attack/node = SubResource("AnimationNodeBlendTree_jm5j8")
-states/attack/position = Vector2(561.57495, 284.54504)
+states/attack/position = Vector2(561.57495, 285.04504)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_2hs0m")
 states/idle/position = Vector2(386.49997, 99.9702)
-states/old_attack/node = SubResource("AnimationNodeBlendSpace2D_bwjto")
-states/old_attack/position = Vector2(412.49997, 317.5925)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_n7ghd")
 states/walk/position = Vector2(537.5, 100.0327)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1jxqw"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_onrkg"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i3pqv"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_hqtel"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_606se"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_sweqy")]
 graph_offset = Vector2(87.07496, 21.997555)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
+radius = 17.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1655857196]
 collision_mask = 17
@@ -667,7 +642,6 @@ parameters/attack/attack/blend_position = Vector2(0.00093638897, 0.9928826)
 parameters/attack/attack_effect/blend_position = Vector2(-0.020599246, -0.26690388)
 parameters/attack/Add2/add_amount = 1.0
 parameters/idle/blend_position = Vector2(0.00093638897, 0.9928826)
-parameters/old_attack/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1213297563]
@@ -678,3 +652,14 @@ parameters/walk/blend_position = Vector2(0, 0)
 volume_db = -20.0
 pitch_scale = 0.99
 max_polyphony = 8
+
+[node name="Interactions" type="Node2D" parent="." unique_id=983354847]
+
+[node name="HurtBox" parent="Interactions" unique_id=540563036 instance=ExtResource("6_2hs0m")]
+position = Vector2(0, 16)
+collision_mask = 256
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=792779361]
+shape = SubResource("CircleShape2D_1jxqw")
+debug_color = Color(0.967935, 0.16030386, 0.21823102, 0.41960785)
