@@ -8,7 +8,7 @@ var move_speed: float = 100.0
 @onready var attack_effect: Sprite2D = %AttackEffectSprite
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var interactions: Node2D = $Interactions
-@onready var hurt_box: HurtBox = $Interactions/HurtBox
+@onready var hurt_box: HurtBox = %AttackHurtBox
 
 func _ready() -> void:
   animation_tree.active = true
@@ -43,19 +43,15 @@ func update_blend_position() -> void:
   animation_tree.set("parameters/attack/attack_effect/blend_position", direction)
   sprite.scale.x = -1 if direction.x < 0 else 1
   attack_effect.scale.x = -1 if direction.x < 0 else 1
+  interactions.scale.x = -1 if direction.x < 0 else 1
 
 # All of this below is a hack because of the AnimationTree.
 # It seems like using the animation tree to track state was actually a bad
 # call, but here we are.
 func enter(started: StringName) -> void:
   if started == "attack_up" or started == "attack_down":
-    await get_tree().create_timer(0.075).timeout
-    print(facing.angle() * 180 / PI)
-    interactions.rotation_degrees = (facing.angle() * 180 / PI) - 90
-    print(interactions.rotation_degrees)
     hurt_box.monitoring = true
 
 func exit(finished: StringName) -> void:
   if finished == "attack_up" or finished == "attack_down":
-    await get_tree().create_timer(0.075).timeout
     hurt_box.monitoring = false

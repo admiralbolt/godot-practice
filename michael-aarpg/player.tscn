@@ -72,6 +72,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
 
 [sub_resource type="Animation" id="Animation_b26j0"]
 resource_name = "attack_down"
@@ -103,6 +115,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(30, -28), Vector2(24, -6), Vector2(-8, 14)]
+}
 
 [sub_resource type="Animation" id="Animation_ivps1"]
 resource_name = "attack_effect_down"
@@ -290,6 +314,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -48), Vector2(30, -30), Vector2(32, -16)]
+}
 
 [sub_resource type="Animation" id="Animation_nvl01"]
 resource_name = "attack_up"
@@ -321,6 +357,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(30, -48), Vector2(-4, -54)]
+}
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
 resource_name = "idle_down"
@@ -594,7 +642,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(87.07496, 21.997555)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
-radius = 17.0
+radius = 12.0415945
 
 [node name="Player" type="CharacterBody2D" unique_id=1655857196]
 collision_mask = 17
@@ -634,6 +682,7 @@ libraries/ = SubResource("AnimationLibrary_hqtel")
 autoplay = &"no_attack_effect"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=148279211]
+active = false
 tree_root = SubResource("AnimationNodeStateMachine_nvl01")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
@@ -655,11 +704,12 @@ max_polyphony = 8
 
 [node name="Interactions" type="Node2D" parent="." unique_id=983354847]
 
-[node name="HurtBox" parent="Interactions" unique_id=540563036 instance=ExtResource("6_2hs0m")]
+[node name="AttackHurtBox" parent="Interactions" unique_id=540563036 instance=ExtResource("6_2hs0m")]
+unique_name_in_owner = true
 position = Vector2(0, 16)
 collision_mask = 256
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=792779361]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/AttackHurtBox" unique_id=792779361]
 shape = SubResource("CircleShape2D_1jxqw")
 debug_color = Color(0.967935, 0.16030386, 0.21823102, 0.41960785)
