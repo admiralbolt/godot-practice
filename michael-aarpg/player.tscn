@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vd2ifirvhnkw" path="res://assets/AttackSprite01.png" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://cj2hq7tigrtto" path="res://assets/SwordSwoosh.wav" id="4_hqtel"]
 [ext_resource type="Texture2D" uid="uid://doiv0vmdmg8ib" path="res://assets/Shadow.png" id="4_sweqy"]
+[ext_resource type="Script" uid="uid://rjnw4hfl8y47" path="res://player_camera.gd" id="6_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://dg7q1f5oayegc" path="res://general/hurtboxes/HurtBox.tscn" id="6_2hs0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wt17y"]
@@ -522,13 +523,15 @@ animation = &"attack_down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_pylmc"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_606se")
-blend_point_0/pos = Vector2(0, -1)
+blend_point_0/pos = Vector2(0, -1.1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_u1c27")
 blend_point_1/pos = Vector2(-1, 0)
 blend_point_2/node = SubResource("AnimationNodeAnimation_op7ga")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_q13i1")
 blend_point_3/pos = Vector2(0, 1)
+min_space = Vector2(-1, -1.29)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pbfsw"]
 animation = &"attack_effect_up"
@@ -544,15 +547,19 @@ animation = &"attack_effect_side"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dx0e4"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_pbfsw")
-blend_point_0/pos = Vector2(0, -1)
+blend_point_0/pos = Vector2(0, -1.1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_5tmop")
-blend_point_1/pos = Vector2(0, 1)
+blend_point_1/pos = Vector2(0, 1.1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_7ahtn")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_7lmhl")
 blend_point_3/pos = Vector2(-1, 0)
+min_space = Vector2(-1, -1.05)
+max_space = Vector2(1, 1.05)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jm5j8"]
+graph_offset = Vector2(-7.6800017, 79.68003)
 nodes/output/position = Vector2(740, 220)
 nodes/attack/node = SubResource("AnimationNodeBlendSpace2D_pylmc")
 nodes/attack/position = Vector2(250, 50)
@@ -694,6 +701,12 @@ parameters/idle/blend_position = Vector2(0.00093638897, 0.9928826)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1213297563]
+limit_left = -300
+limit_top = -300
+limit_right = 300
+limit_bottom = 300
+editor_draw_limits = true
+script = ExtResource("6_1jxqw")
 
 [node name="Audio" type="Node2D" parent="." unique_id=831712901]
 

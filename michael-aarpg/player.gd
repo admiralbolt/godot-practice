@@ -12,7 +12,7 @@ var move_speed: float = 100.0
 
 func _ready() -> void:
   animation_tree.active = true
-  print("okay...")
+  PlayerManager.player = self
   $AnimationTree.animation_started.connect(enter)
   $AnimationTree.animation_finished.connect(exit)
 
@@ -49,9 +49,10 @@ func update_blend_position() -> void:
 # It seems like using the animation tree to track state was actually a bad
 # call, but here we are.
 func enter(started: StringName) -> void:
-  if started == "attack_up" or started == "attack_down":
+  print("started: ", started)
+  if started == "attack_up" or started == "attack_down" or started == "attack_side":
     hurt_box.monitoring = true
 
 func exit(finished: StringName) -> void:
-  if finished == "attack_up" or finished == "attack_down":
+  if finished == "attack_up" or finished == "attack_down" or finished == "attack_side":
     hurt_box.monitoring = false
