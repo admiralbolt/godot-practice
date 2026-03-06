@@ -1,8 +1,8 @@
 class_name Enemy extends CharacterBody2D
 
 signal direction_changed(new_direction: Vector2)
-signal enemy_damaged(amount: int)
-signal enemy_destroyed()
+signal enemy_damaged(hurt_box: HurtBox)
+signal enemy_destroyed(hurt_box: HurtBox)
 
 @export var health: float = 5.0
 
@@ -43,12 +43,12 @@ func set_direction(new_direction: Vector2) -> bool:
 func update_animation(state: String) -> void:
   animation_player.play(state + "_" + direction_string)
 
-func _take_damage(amount: float) -> void:
+func _take_damage(hurt_box: HurtBox) -> void:
   if invincible:
     return
   
-  health -= amount
+  health -= hurt_box.damage
   if health > 0:
-    enemy_damaged.emit(amount)
+    enemy_damaged.emit(hurt_box)
   else:
-    enemy_destroyed.emit()
+    enemy_destroyed.emit(hurt_box)
