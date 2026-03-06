@@ -718,10 +718,6 @@ collision_layer = 272
 collision_mask = 16
 script = ExtResource("1_6326o")
 
-[node name="Shadow" type="Sprite2D" parent="." unique_id=1230866101]
-modulate = Color(0.8784314, 0.38039216, 0.13333334, 0.5137255)
-texture = ExtResource("2_j284o")
-
 [node name="HurtBox" parent="." unique_id=540563036 instance=ExtResource("7_bkm6f")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1655307199]
@@ -741,6 +737,11 @@ position = Vector2(0, -23)
 texture = ExtResource("1_sv735")
 hframes = 16
 vframes = 2
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=1230866101]
+modulate = Color(0.8784314, 0.38039216, 0.13333334, 0.5137255)
+position = Vector2(0, 23)
+texture = ExtResource("2_j284o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=953378472]
 position = Vector2(0, -5)
