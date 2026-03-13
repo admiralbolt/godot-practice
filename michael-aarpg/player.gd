@@ -7,8 +7,8 @@ var cardinal_direction: Vector2 = Vector2.DOWN
 var facing: Vector2 = Vector2.DOWN
 var move_speed: float = 100.0
 var invincible: bool = false
-var health: int = 6
-var max_health: int = 6
+var health: float = 6
+var max_health: float = 6
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_effect: Sprite2D = %AttackEffectSprite
@@ -81,5 +81,14 @@ func _take_damage(p_hurt_box: HurtBox) -> void:
     player_damaged.emit(p_hurt_box)
     update_health(99)
 
-func update_health(delta: int) -> void:
+func update_health(delta: float) -> void:
   health = clamp(health + delta, 0, max_health)
+  PlayerHud.update_hp(health, max_health)
+
+func make_invincible(duration: float = 1.0) -> void:
+  invincible = true
+  hit_box.monitoring = false
+  
+  await get_tree().create_timer(duration).timeout
+  invincible = false
+  hit_box.monitoring = true

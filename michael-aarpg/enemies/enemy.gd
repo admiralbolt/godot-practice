@@ -14,6 +14,7 @@ var player: Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hit_box: HitBox = $HitBox
+@onready var hurt_box: HurtBox = $HurtBox
 @onready var state_machine: EnemyStateMachine = $EnemyStateMachine
 
 func _ready() -> void:

@@ -17,6 +17,7 @@ func enter() -> void:
   enemy.velocity = direction * -knockback_speed
   enemy.update_animation(anim_name)
   enemy.animation_player.animation_finished.connect(_on_animation_finished)
+  enemy.hurt_box.monitoring = false
   enemy.set_collision_layer_value(5, false)
   enemy.set_collision_layer_value(9, false)
 

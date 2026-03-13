@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="michael-aarpg"
-run/main_scene="uid://b08a1ia4jdolg"
+run/main_scene="uid://rybw1h3msvic"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 LevelManager="*uid://4q2rsrxio6fb"
+PlayerHud="*uid://byo5hv3cp0pa0"
 PlayerManager="*uid://7dw062vc4wxn"
 
 [display]
@@ -27,6 +28,10 @@ window/size/viewport_height=288
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
