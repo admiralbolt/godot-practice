@@ -21,7 +21,7 @@ func load_new_level(level_path: String, p_target_transition: String, p_position_
 
   get_tree().paused = true
 
-  await get_tree().process_frame
+  await SceneTransition.fade_out()
 
   level_load_started.emit()
 
@@ -29,14 +29,14 @@ func load_new_level(level_path: String, p_target_transition: String, p_position_
   
   get_tree().change_scene_to_file(level_path)
 
-  await get_tree().process_frame
+  await SceneTransition.fade_in()
 
   get_tree().paused = false
 
   await get_tree().process_frame
+
   level_loaded.emit()
 
 func change_tilemap_bounds(bounds: Array[Vector2]) -> void:
   current_tilemap_bounds = bounds
   emit_signal("tilemap_bounds_changed", bounds)
-
