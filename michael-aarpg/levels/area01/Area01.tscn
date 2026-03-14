@@ -38,10 +38,22 @@ position = Vector2(-16, 399)
 position = Vector2(-33, 446)
 
 [node name="Slime" parent="." unique_id=601651984 instance=ExtResource("6_6yh52")]
-position = Vector2(264, 488)
+position = Vector2(346, 546)
+
+[node name="Slime4" parent="." unique_id=119392788 instance=ExtResource("6_6yh52")]
+position = Vector2(322, 545)
+
+[node name="Slime5" parent="." unique_id=384938766 instance=ExtResource("6_6yh52")]
+position = Vector2(356, 516)
+
+[node name="Slime6" parent="." unique_id=1843600334 instance=ExtResource("6_6yh52")]
+position = Vector2(373, 504)
+
+[node name="Slime7" parent="." unique_id=1689291086 instance=ExtResource("6_6yh52")]
+position = Vector2(338, 526)
 
 [node name="Slime2" parent="." unique_id=1172260264 instance=ExtResource("6_6yh52")]
-position = Vector2(276, 448)
+position = Vector2(360, 535)
 
 [node name="Slime3" parent="." unique_id=1726560470 instance=ExtResource("6_6yh52")]
-position = Vector2(309, 500)
+position = Vector2(376, 522)

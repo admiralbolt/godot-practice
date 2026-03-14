@@ -24,3 +24,8 @@ func set_as_parent(parent: Node) -> void:
 
 func unparent_player(parent: Node) -> void:
   parent.remove_child(player)
+
+func set_health(health: float, max_health: float) -> void:
+  player.max_health = max_health
+  player.health = health
+  player.update_health(0)
