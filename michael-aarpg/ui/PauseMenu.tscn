@@ -1,12 +1,40 @@
 [gd_scene format=3 uid="uid://ck0u2vhjpshyo"]
 
 [ext_resource type="Script" uid="uid://o3rxw0jquj0v" path="res://ui/pause_menu.gd" id="1_c7v6e"]
+[ext_resource type="Texture2D" uid="uid://baa3tvlol6rwc" path="res://assets/items.png" id="2_1q10k"]
+[ext_resource type="PackedScene" uid="uid://c4abty1q2fgb" path="res://ui/inventory/InventorySlot.tscn" id="3_4dg4t"]
+[ext_resource type="Script" uid="uid://bq85a2vth31hw" path="res://ui/inventory/inventory_ui.gd" id="3_ptdjk"]
+[ext_resource type="Resource" uid="uid://ds635vcke53og" path="res://ui/inventory/player_inventory.tres" id="4_ptdjk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptdjk"]
+atlas = ExtResource("2_1q10k")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqsny"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = SubResource("AtlasTexture_ptdjk")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=259825762]
 process_mode = 3
 script = ExtResource("1_c7v6e")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=857938789]
+[node name="Control" type="Control" parent="." unique_id=200225565]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=857938789]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,36 +42,92 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23529412, 0.23529412, 0.23529412, 0.7607843)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=418151939]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=2099869815]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 60.0
+offset_right = 293.0
+offset_bottom = 148.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bqsny")
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer" unique_id=2013374144]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_ptdjk")
+data = ExtResource("4_ptdjk")
+
+[node name="InventorySlot" parent="Control/PanelContainer/GridContainer" unique_id=355899468 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/PanelContainer/GridContainer" unique_id=1183217387 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/PanelContainer/GridContainer" unique_id=1340669886 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/PanelContainer/GridContainer" unique_id=1629967920 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/PanelContainer/GridContainer" unique_id=1942538469 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Control/PanelContainer/GridContainer" unique_id=1879359713 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="Control/PanelContainer/GridContainer" unique_id=1347290639 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="Control/PanelContainer/GridContainer" unique_id=718415073 instance=ExtResource("3_4dg4t")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=418151939]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -33.5
-offset_right = 62.5
-offset_bottom = 33.5
+offset_left = -228.0
+offset_top = 47.0
+offset_right = -103.0
+offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonSave" type="Button" parent="VBoxContainer" unique_id=2059835845]
+[node name="ButtonSave" type="Button" parent="Control/VBoxContainer" unique_id=2059835845]
 layout_mode = 2
-focus_neighbor_top = NodePath("../ButtonLoad")
 text = "Save"
 
-[node name="ButtonLoad" type="Button" parent="VBoxContainer" unique_id=698070868]
+[node name="ButtonLoad" type="Button" parent="Control/VBoxContainer" unique_id=698070868]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ButtonSave")
 text = "Load"
 
-[node name="Label" type="Label" parent="." unique_id=782093785]
+[node name="Label" type="Label" parent="Control" unique_id=782093785]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -38.0
-offset_top = 46.0
-offset_right = 38.0
-offset_bottom = 69.0
+offset_left = -214.0
+offset_top = 20.0
+offset_right = -138.0
+offset_bottom = 43.0
 grow_horizontal = 2
 text = "[ paused ]"
+
+[node name="ItemDescription" type="Label" parent="Control" unique_id=1740210762]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.0
+offset_top = 152.0
+offset_right = 34.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
+text = "Yeehaw pardner yeehaw pardner yeehaw pardner"
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=740142928]
+volume_db = -22.766
+max_polyphony = 4

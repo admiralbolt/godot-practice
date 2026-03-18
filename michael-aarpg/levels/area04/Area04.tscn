@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://cudgmgn2kikch" path="res://levels/level.gd" id="1_myh8x"]
 [ext_resource type="PackedScene" uid="uid://iqj4xti26n0x" path="res://levels/LevelTransition.tscn" id="3_sc6v7"]
 [ext_resource type="PackedScene" uid="uid://cvch6dh3albhm" path="res://levels/PlayerSpawner.tscn" id="4_d2t7w"]
+[ext_resource type="PackedScene" uid="uid://dqhoslg8mxvs5" path="res://items/item_pickup/ItemPickup.tscn" id="5_gwwsh"]
+[ext_resource type="Resource" uid="uid://3aw5xx0sk0er" path="res://items/potion.tres" id="6_gwwsh"]
+[ext_resource type="Resource" uid="uid://dh1sapekvjg0p" path="res://items/gem.tres" id="6_id56l"]
+[ext_resource type="Resource" uid="uid://dgw43ikh8sy1x" path="res://items/apple.tres" id="8_chgjg"]
 
 [node name="Area04" type="Node2D" unique_id=1717359442]
 script = ExtResource("1_myh8x")
@@ -18,3 +22,15 @@ target_transition_area = "LevelTransition2"
 
 [node name="PlayerSpawner" parent="." unique_id=1913105578 instance=ExtResource("4_d2t7w")]
 position = Vector2(247, 350)
+
+[node name="ItemPickup" parent="." unique_id=1356395420 instance=ExtResource("5_gwwsh")]
+position = Vector2(87, 307)
+item_data = ExtResource("6_id56l")
+
+[node name="ItemPickup2" parent="." unique_id=600459107 instance=ExtResource("5_gwwsh")]
+position = Vector2(67, 353)
+item_data = ExtResource("6_gwwsh")
+
+[node name="ItemPickup3" parent="." unique_id=1793439737 instance=ExtResource("5_gwwsh")]
+position = Vector2(116, 382)
+item_data = ExtResource("8_chgjg")

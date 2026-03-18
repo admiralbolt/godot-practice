@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://3aw5xx0sk0er"]
+
+[ext_resource type="Script" uid="uid://dyliv273cd3gp" path="res://items/item_data.gd" id="1_70df6"]
+[ext_resource type="Script" uid="uid://cnarpvot3bldu" path="res://items/item_effects/item_effect.gd" id="1_hxf14"]
+[ext_resource type="Texture2D" uid="uid://baa3tvlol6rwc" path="res://assets/items.png" id="2_8h85v"]
+[ext_resource type="Script" uid="uid://bblomiyt6or" path="res://items/item_effects/item_effect_heal.gd" id="2_u0y06"]
+[ext_resource type="AudioStream" uid="uid://but147r4xn4t1" path="res://assets/hp-up.wav" id="3_ncbnu"]
+
+[sub_resource type="Resource" id="Resource_q7uc3"]
+script = ExtResource("2_u0y06")
+heal_amount = 2.0
+sound = ExtResource("3_ncbnu")
+metadata/_custom_type_script = "uid://bblomiyt6or"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbvxt"]
+atlas = ExtResource("2_8h85v")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_70df6")
+name = "Potion"
+description = "Nothing quite like that cherry red."
+texture = SubResource("AtlasTexture_gbvxt")
+effects = Array[ExtResource("1_hxf14")]([SubResource("Resource_q7uc3")])
+metadata/_custom_type_script = "uid://dyliv273cd3gp"
