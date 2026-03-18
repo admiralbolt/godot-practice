@@ -27,6 +27,7 @@ func save_game() -> void:
   }
 
   current_save["scene_path"] = get_tree().current_scene.scene_file_path
+  current_save["items"] = PlayerManager.INVENTORY_DATA.get_save_data()
 
   var file: FileAccess = FileAccess.open(SAVE_PATH + "save_game.json", FileAccess.WRITE)
   file.store_line(JSON.stringify(current_save))
@@ -49,6 +50,8 @@ func load_game() -> void:
 
   PlayerManager.set_player_position(Vector2(current_save["player"]["pos_x"], current_save["player"]["pos_y"]))
   PlayerManager.set_health(current_save["player"]["health"], current_save["player"]["max_health"])
+  print(current_save["items"])
+  PlayerManager.INVENTORY_DATA.load_save_data(current_save["items"])
 
   await LevelManager.level_loaded
   game_loaded.emit()
