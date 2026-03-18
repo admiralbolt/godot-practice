@@ -12,6 +12,11 @@ func _init() -> void:
 
     slot.changed.connect(_on_slot_changed.bind(i))
 
+func reload(p_slots: Array[SlotData]) -> void:
+  for i in range(p_slots.size()):
+    slots[i] = p_slots[i]
+
+
 func _on_slot_changed(index: int) -> void:
   if slots[index].quantity >= 1:
     return
