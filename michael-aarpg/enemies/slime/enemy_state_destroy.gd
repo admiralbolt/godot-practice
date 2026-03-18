@@ -1,8 +1,13 @@
 class_name EnemyDestroyStun extends EnemyState
 
+const PICKUP = preload("res://items/item_pickup/ItemPickup.tscn")
+
 @export var anim_name: String = "destroy"
 @export var knockback_speed: float = 200.0
 @export var decelerate_speed: float = 10.0
+
+@export_category("Item Drops")
+@export var drops: Array[DropData]
 
 var _damage_position: Vector2 = Vector2.ZERO
 
@@ -15,6 +20,7 @@ func enter() -> void:
 
   enemy.set_direction(direction)
   enemy.velocity = direction * -knockback_speed
+  drop_items()
   enemy.update_animation(anim_name)
   enemy.animation_player.animation_finished.connect(_on_animation_finished)
   enemy.hurt_box.monitoring = false
@@ -35,3 +41,22 @@ func _on_enemy_destroyed(hurt_box: HurtBox) -> void:
 
 func _on_animation_finished(_anim_name: String) -> void:
   enemy.queue_free()
+
+func drop_items() -> void:
+  if drops.size() == 0:
+    return
+
+  for drop in drops:
+    if drop == null or drop.item == null:
+      continue
+
+    var drop_count = drop.get_drop_count()
+    for i in range(drop_count):
+      var item_pickup = PICKUP.instantiate() as ItemPickup
+      item_pickup.item_data = drop.item
+      item_pickup.global_position = enemy.global_position
+      item_pickup.velocity = enemy.velocity.rotated(randf_range(-PI / 4, PI /4)) * randf_range(0.8, 1.4)
+
+      enemy.get_parent().call_deferred("add_child", item_pickup)
+
+  
