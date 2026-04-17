@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://8youwfrylbue"]
+
+[ext_resource type="Script" uid="uid://cbjrju718yny7" path="res://interactables/treasure_chest.gd" id="1_flsih"]
+[ext_resource type="Texture2D" uid="uid://dxlv83gseq7td" path="res://assets/treasure-chest.png" id="2_03o4e"]
+[ext_resource type="Texture2D" uid="uid://baa3tvlol6rwc" path="res://assets/items.png" id="3_03o4e"]
+[ext_resource type="AudioStream" uid="uid://b3823tpktxdse" path="res://assets/treasure-open.wav" id="4_hcahn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcahn"]
+atlas = ExtResource("3_03o4e")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_hcahn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ItemSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ItemSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_03o4e"]
+resource_name = "closed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0yceu"]
+resource_name = "open_chest"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10344016),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10585981),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_hcahn")
+}],
+"times": PackedFloat32Array(0.10041559)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ItemSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11190894, 0.29943204),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ItemSprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.20325083, 0.29943204, 0.7717655, 1.3598568),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.353256, 1.353256, 1.353256, 1), Color(1.353256, 1.353256, 1.353256, 1), Color(1.353256, 1.353256, 1.353256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f8rbn"]
+resource_name = "opened"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hcahn"]
+_data = {
+&"RESET": SubResource("Animation_hcahn"),
+&"closed": SubResource("Animation_03o4e"),
+&"open_chest": SubResource("Animation_0yceu"),
+&"opened": SubResource("Animation_f8rbn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03o4e"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcahn"]
+size = Vector2(38, 20)
+
+[node name="TreasureChest" type="Node2D" unique_id=2072759152]
+script = ExtResource("1_flsih")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=899236267]
+texture = ExtResource("2_03o4e")
+hframes = 2
+
+[node name="ItemSprite" type="Sprite2D" parent="." unique_id=771157106]
+texture = SubResource("AtlasTexture_hcahn")
+
+[node name="Label" type="Label" parent="ItemSprite" unique_id=671505742]
+offset_left = 10.0
+offset_top = -7.0
+offset_right = 50.0
+offset_bottom = 16.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "x99"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1353251107]
+libraries/ = SubResource("AnimationLibrary_hcahn")
+autoplay = &"closed"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=839771550]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1761003291]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=278192331]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_03o4e")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=337606435]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1750630672]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_hcahn")
+debug_color = Color(0.29257947, 0.6126559, 0.42171955, 0.41960785)

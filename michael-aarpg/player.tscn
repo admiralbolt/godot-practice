@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://rjnw4hfl8y47" path="res://player_camera.gd" id="6_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://dg7q1f5oayegc" path="res://general/hurtboxes/HurtBox.tscn" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://cuh4xafionjdp" path="res://general/hitboxes/HitBox.tscn" id="8_dw050"]
+[ext_resource type="Script" uid="uid://btd8w7q60asl8" path="res://player_interactions.gd" id="9_606se"]
 [ext_resource type="AudioStream" uid="uid://diwotqb2b8x1w" path="res://assets/hit_player.wav" id="9_b26j0"]
 [ext_resource type="Script" uid="uid://clhq4pkg0wgfm" path="res://player_state_machine.gd" id="10_nvl01"]
 [ext_resource type="Script" uid="uid://2s0exmhsaaxv" path="res://player_idle_state.gd" id="11_ivps1"]
@@ -83,7 +84,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/5/path = NodePath("AttackContainer/AttackHurtBox:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -126,7 +127,7 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/path = NodePath("AttackContainer/AttackHurtBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -325,7 +326,7 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/path = NodePath("AttackContainer/AttackHurtBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -368,7 +369,7 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Interactions/AttackHurtBox:position")
+tracks/2/path = NodePath("AttackContainer/AttackHurtBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -610,8 +611,7 @@ _data = {
 &"walk_up": SubResource("Animation_dw050")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
-radius = 12.0415945
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwjto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b26j0"]
 
@@ -862,6 +862,9 @@ _data = {
 &"attack_effect_up": SubResource("Animation_7ahtn")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
+radius = 12.0415945
+
 [node name="Player" type="CharacterBody2D" unique_id=1655857196]
 collision_mask = 17
 motion_mode = 1
@@ -915,16 +918,17 @@ pitch_scale = 0.99
 max_polyphony = 8
 
 [node name="Interactions" type="Node2D" parent="." unique_id=983354847]
+script = ExtResource("9_606se")
 
-[node name="AttackHurtBox" parent="Interactions" unique_id=540563036 instance=ExtResource("6_2hs0m")]
-unique_name_in_owner = true
-position = Vector2(0, 16)
-collision_mask = 256
+[node name="Area2D" type="Area2D" parent="Interactions" unique_id=2105460330]
+collision_layer = 4
+collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/AttackHurtBox" unique_id=792779361]
-shape = SubResource("CircleShape2D_1jxqw")
-debug_color = Color(0.967935, 0.16030386, 0.21823102, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Area2D" unique_id=2117083309]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_bwjto")
+debug_color = Color(0.315526, 0.6153504, 0.3374861, 0.41960785)
 
 [node name="HitBox" parent="." unique_id=1473301795 instance=ExtResource("8_dw050")]
 collision_layer = 2
@@ -954,3 +958,16 @@ script = ExtResource("14_bwjto")
 
 [node name="AttackEffectPlayer" type="AnimationPlayer" parent="." unique_id=1690829679]
 libraries/ = SubResource("AnimationLibrary_7lmhl")
+
+[node name="AttackContainer" type="Node2D" parent="." unique_id=1506902783]
+scale = Vector2(-1, 1)
+
+[node name="AttackHurtBox" parent="AttackContainer" unique_id=540563036 instance=ExtResource("6_2hs0m")]
+unique_name_in_owner = true
+position = Vector2(0, 16)
+collision_mask = 256
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackContainer/AttackHurtBox" unique_id=792779361]
+shape = SubResource("CircleShape2D_1jxqw")
+debug_color = Color(0.967935, 0.16030386, 0.21823102, 0.41960785)

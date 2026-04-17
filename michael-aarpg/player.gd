@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal player_damaged(hurt_box: HurtBox)
+signal direction_changed(new_direction: Vector2)
 
 var direction: Vector2 = Vector2.ZERO
 var cardinal_direction: Vector2 = Vector2.DOWN
@@ -16,9 +17,11 @@ var max_health: float = 6
 @onready var attack_effect_player: AnimationPlayer = $AttackEffectPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 @onready var interactions: Node2D = $Interactions
+@onready var attack_container: Node2D = $AttackContainer
 @onready var hurt_box: HurtBox = %AttackHurtBox
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+
 
 func _ready() -> void:
   state_machine.initialize(self)
@@ -50,10 +53,11 @@ func set_direction() -> bool:
   if new_dir == cardinal_direction:
     return false
 
+  direction_changed.emit(new_dir)
   cardinal_direction = new_dir
   sprite.scale.x = -1 if cardinal_direction.x < 0 else 1
   attack_effect.scale.x = -1 if cardinal_direction.x < 0 else 1
-  interactions.scale.x = -1 if cardinal_direction.x < 0 else 1
+  attack_container.scale.x = -1 if cardinal_direction.x < 0 else 1
   return true
 
 func _animation_direction() -> String:

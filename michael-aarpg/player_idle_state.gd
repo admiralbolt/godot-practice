@@ -16,3 +16,6 @@ func process(_delta: float) -> State:
 func handle_input(event: InputEvent) -> void:
   if event.is_action_pressed("attack"):
     state_machine.change_state(attack_state)
+
+  if event.is_action_pressed("interact"):
+    PlayerManager.interact_pressed.emit()
