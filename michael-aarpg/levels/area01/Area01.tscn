@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cpmhm3w2om2wo" path="res://props/plants/Plant.tscn" id="5_mktli"]
 [ext_resource type="PackedScene" uid="uid://ba28israc0yiu" path="res://enemies/slime/slime.tscn" id="6_6yh52"]
 [ext_resource type="PackedScene" uid="uid://8youwfrylbue" path="res://interactables/treasure_chest.tscn" id="7_6yh52"]
+[ext_resource type="PackedScene" uid="uid://bfs2y3gg185yb" path="res://enemies/goblin/goblin.tscn" id="7_d6trc"]
 [ext_resource type="Resource" uid="uid://djbucfgsjjqic" path="res://items/stone.tres" id="8_1kb14"]
 [ext_resource type="Resource" uid="uid://3aw5xx0sk0er" path="res://items/potion.tres" id="9_1px54"]
+[ext_resource type="Resource" uid="uid://dh1sapekvjg0p" path="res://items/gem.tres" id="10_1px54"]
 
 [node name="Area01" type="Node2D" unique_id=1072203813]
 script = ExtResource("1_eixnd")
@@ -61,6 +63,9 @@ position = Vector2(360, 535)
 [node name="Slime3" parent="." unique_id=1726560470 instance=ExtResource("6_6yh52")]
 position = Vector2(376, 522)
 
+[node name="Goblin" parent="." unique_id=398135062 instance=ExtResource("7_d6trc")]
+position = Vector2(-53, 227)
+
 [node name="TreasureChest" parent="." unique_id=2072759152 instance=ExtResource("7_6yh52")]
 position = Vector2(96, 220)
 item_data = ExtResource("8_1kb14")
@@ -73,3 +78,4 @@ quantity = 10
 
 [node name="TreasureChest3" parent="." unique_id=1647343402 instance=ExtResource("7_6yh52")]
 position = Vector2(257, 226)
+item_data = ExtResource("10_1px54")

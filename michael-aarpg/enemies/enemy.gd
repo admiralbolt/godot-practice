@@ -37,7 +37,7 @@ func set_direction(new_direction: Vector2) -> bool:
   else:
     direction_string = "down"
   
-  emit_signal("direction_changed", new_direction)
+  self.direction_changed.emit(new_direction)
   sprite.scale.x = -1 if direction.x < 0 else 1
   return true
 

@@ -29,6 +29,7 @@ func _ready() -> void:
   update_health(99)
   hit_box.Damaged.connect(_take_damage)
 
+
 func _process(_delta: float) -> void:
   direction = Input.get_vector("left", "right", "up", "down")
   if direction == Vector2.ZERO:

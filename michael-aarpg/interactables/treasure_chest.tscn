@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxlv83gseq7td" path="res://assets/treasure-chest.png" id="2_03o4e"]
 [ext_resource type="Texture2D" uid="uid://baa3tvlol6rwc" path="res://assets/items.png" id="3_03o4e"]
 [ext_resource type="AudioStream" uid="uid://b3823tpktxdse" path="res://assets/treasure-open.wav" id="4_hcahn"]
+[ext_resource type="Script" uid="uid://c54kn6l81gcbt" path="res://general/persistent_data_handler/persistent_data_handler.gd" id="5_f8rbn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcahn"]
 atlas = ExtResource("3_03o4e")
@@ -196,6 +197,7 @@ size = Vector2(30, 14)
 size = Vector2(38, 20)
 
 [node name="TreasureChest" type="Node2D" unique_id=2072759152]
+process_mode = 3
 script = ExtResource("1_flsih")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=899236267]
@@ -206,6 +208,7 @@ hframes = 2
 texture = SubResource("AtlasTexture_hcahn")
 
 [node name="Label" type="Label" parent="ItemSprite" unique_id=671505742]
+visible = false
 offset_left = 10.0
 offset_top = -7.0
 offset_right = 50.0
@@ -213,13 +216,14 @@ offset_bottom = 16.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 12
-text = "x99"
+text = "x1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1353251107]
 libraries/ = SubResource("AnimationLibrary_hcahn")
 autoplay = &"closed"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=839771550]
+volume_db = -22.246
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1761003291]
 collision_layer = 16
@@ -237,3 +241,7 @@ collision_mask = 4
 position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_hcahn")
 debug_color = Color(0.29257947, 0.6126559, 0.42171955, 0.41960785)
+
+[node name="PersistentDataIsOpen" type="Node" parent="." unique_id=1925821198]
+script = ExtResource("5_f8rbn")
+metadata/_custom_type_script = "uid://c54kn6l81gcbt"
